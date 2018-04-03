@@ -1,14 +1,23 @@
 import * as QuarterUtils from './quarter';
+import * as MonthUtils from './month';
+import * as TransformUtils from './transform';
 
-const AwesomeDate = {
-    ...QuarterUtils
-}
-
-export function install(Base) {
+function install() {
     let f;
-    for(f in AwesomeDate) {
-        Base.prototype[f] = AwesomeDate[f];
+    for(f in QuarterUtils) {
+        Date.prototype[f] = AwesomeDate[f];
+    }
+    for(f in MonthUtils) {
+        Date.prototype[f] = AwesomeDate[f];
+    }
+    for(f in TransformUtils) {
+        Date.prototype[f] = AwesomeDate[f];
     }
 }
 
-export default AwesomeDate;
+export default {
+    ...QuarterUtils,
+    ...MonthUtils,
+    ...TransformUtils,
+    install
+};

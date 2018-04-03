@@ -1,8 +1,8 @@
 import { parse } from '../../src/transform';
 
 const std_time = new Date(2018, 3, 2, 0, 0, 0).getTime();
-test('parse default(yyyyMMdd hh:mm:ss)', () => {
-    expect(parse('20180402 00:00:00').getTime())
+test('parse default(yyyy-MM-dd hh:mm:ss)', () => {
+    expect(parse('2018-04-02 00:00:00').getTime())
         .toBe(std_time);
 });
 test('parse yyyy-MM-dd hh:mm:ss', () => {

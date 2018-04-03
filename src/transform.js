@@ -1,24 +1,32 @@
-export function stringify(date, fmt = 'yyyyMMdd') {
-    if (!(date instanceof Date)) {
-        date = this;
+export function stringify(date, fmt = 'yyyy-MM-dd hh:mm:ss') {
+    let entry;
+    // 判断调用方式
+    if (this instanceof Date) {
+        // 如果绑定到日期原型链 忽略参数date
+        if (typeof date === 'string') {
+            fmt = date;
+        }
+        entry = this;
+    } else {
+        entry = date;
     }
-    if (!(date instanceof Date)) {
+    if (!(entry instanceof Date)) {
         return;
     }
     const o = {
-        'M+': date.getMonth() + 1,
-        'd+': date.getDate(),
-        'h+': date.getHours(),
-        'm+': date.getMinutes(),
-        's+': date.getSeconds(),
-        'q+': Math.floor((date.getMonth() + 3) / 3),
-        S: date.getMilliseconds(),
+        'M+': entry.getMonth() + 1,
+        'd+': entry.getDate(),
+        'h+': entry.getHours(),
+        'm+': entry.getMinutes(),
+        's+': entry.getSeconds(),
+        'q+': Math.floor((entry.getMonth() + 3) / 3),
+        S: entry.getMilliseconds(),
     };
 
     let str = fmt;
 
     if (/(y+)/.test(fmt)) {
-        str = str.replace(RegExp.$1, `${date.getFullYear()}`.substr(4 - RegExp.$1.length));
+        str = str.replace(RegExp.$1, `${entry.getFullYear()}`.substr(4 - RegExp.$1.length));
     }
 
     Object.entries(o).forEach(([k, v]) => {
@@ -30,7 +38,7 @@ export function stringify(date, fmt = 'yyyyMMdd') {
     return str;
 }
 
-export function parse(str, fmt = 'yyyyMMdd hh:mm:ss') {
+export function parse(str, fmt = 'yyyy-MM-dd hh:mm:ss') {
     if (!str) return;
     const t = Date.parse(str);
     if (!isNaN(t)) return new Date(t);

@@ -125,8 +125,8 @@ test('stringify S to 123', () => {
 /**
  * stringify defult
  */
-test('stringify default to 20180401', () => {
-    expect(stringify(new Date(2018, 3, 1))).toBe('20180401');
+test('stringify default to 2018-04-01', () => {
+    expect(stringify(new Date(2018, 3, 1))).toBe('2018-04-01 00:00:00');
 });
 
 test('stringify with no param', () => expect(stringify()).toBeUndefined());

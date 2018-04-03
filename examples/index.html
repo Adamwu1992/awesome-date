@@ -11,6 +11,14 @@
 <script src="../release/index.js"></script>
 <script>
     console.log(AwesomeDate);
+    const now = new Date();
+    console.log(AwesomeDate.getQuarter(now));
+
+    AwesomeDate.install(Date);
+
+    console.log(new Date().getQuarterStart().stringify('yyyy/MM/dd hh:mm:ss'));
+    console.log(new Date().getQuarterEnd().stringify(new Date(2018, 11, 11),'yyyy/MM/dd hh:mm:ss'));
+    console.log(new Date().getQuarterEnd().stringify());
 </script>
 </body>
 </html>
