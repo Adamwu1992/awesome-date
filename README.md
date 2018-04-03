@@ -1,4 +1,4 @@
-# 🎉🎉🎉 awesome-date
+# 🎉 awesome-date
 > A lib about date
 
 ## Usage
